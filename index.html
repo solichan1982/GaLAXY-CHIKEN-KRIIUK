@@ -42,6 +42,18 @@
         #map { height: 500px; border-radius: 1rem; z-index: 10; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 1rem; box-shadow: 0 10px 30px rgba(251, 146, 60, 0.2); }
         .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* CSS untuk Pop-up Marketing */
+        #marketing-modal-backdrop {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #marketing-modal-backdrop.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #marketing-modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="scroll-smooth">
@@ -50,7 +62,7 @@
     <header class="bg-slate-900/50 backdrop-blur-sm fixed w-full z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 text-2xl font-bold text-white">
-                <img src="adobe.png" alt="Logo Galaxy Chicken Criuk" class="w-12 h-12">
+                <img src="asset/adobe.png" alt="Logo Galaxy Chicken Criuk" class="w-12 h-12">
                 <span class="text-white">Galaxy <span class="text-orange-400">Chicken</span></span>
             </a>
             <div class="hidden md:flex space-x-8 text-lg">
@@ -61,7 +73,8 @@
                 <a href="#peta" class="text-gray-300 hover:text-orange-400 transition">Lokasi</a>
                 <a href="proposal.html" target="_blank" class="text-gray-300 hover:text-orange-400 transition">Proposal</a>
             </div>
-            <a href="https://wa.me/6281382256196?text=Halo,%20saya%20tertarik%20dengan%20franchise%20Galaxy%20Chicken%20Criuk." target="_blank" class="hidden md:block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full transition">Hubungi Kami</a>
+            <!-- Tombol ini juga membuka pop-up -->
+            <button type="button" class="open-modal-trigger hidden md:block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full transition">Hubungi Kami</button>
         </nav>
     </header>
 
@@ -110,15 +123,46 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16"><h2 class="text-4xl font-bold text-white uppercase reveal">Pilih Misi <span class="text-orange-400">Anda</span></h2><p class="text-gray-400 mt-2 reveal">Tiga paket kemitraan dirancang untuk setiap level investor, dari pemula hingga komandan.</p></div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-2xl p-8 flex flex-col reveal"><h3 class="text-2xl font-bold text-orange-400">Paket Stasiun Luar Angkasa</h3><p class="text-4xl font-black my-4">Rp 15 Juta</p><p class="text-gray-400 mb-6">Paket hemat untuk memulai perjalanan bisnis kuliner Anda. Cocok untuk konsep booth minimalis.</p><ul class="space-y-3 text-lg flex-grow"><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Booth Portabel Eksklusif</li><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Peralatan Masak Dasar</li><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Bahan Baku Awal 100 Porsi</li></ul><a href="https://wa.me/6281382256196?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Stasiun%20Luar%20Angkasa." target="_blank" class="mt-8 w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition">Pilih Misi Ini</a></div>
-                <div class="glass-card rounded-2xl p-8 flex flex-col border-2 border-orange-500 transform scale-105 shadow-2xl shadow-orange-500/20 reveal"><span class="bg-orange-500 text-white text-sm font-bold px-3 py-1 rounded-full absolute -top-4 right-4">PALING POPULER</span><h3 class="text-2xl font-bold text-orange-400">Paket Penjelajah Galaksi</h3><p class="text-4xl font-black my-4">Rp 25 Juta</p><p class="text-gray-400 mb-6">Paket terlengkap untuk jangkauan pasar yang lebih luas. Ideal untuk lokasi strategis di ruko atau teras.</p><ul class="space-y-3 text-lg flex-grow"><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Gerobak Premium Modern</li><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Peralatan Masak Lengkap</li><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Bahan Baku Awal 250 Porsi</li></ul><a href="https://wa.me/6281382256196?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Penjelajah%20Galaksi." target="_blank" class="mt-8 w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition">Pilih Misi Ini</a></div>
-                <div class="glass-card rounded-2xl p-8 flex flex-col reveal"><h3 class="text-2xl font-bold text-orange-400">Paket Komandan Kosmik</h3><p class="text-4xl font-black my-4">Rp 50 Juta</p><p class="text-gray-400 mb-6">Paket supremasi untuk dominasi pasar. Konsep mini-resto dengan fasilitas dan dukungan super lengkap.</p><ul class="space-y-3 text-lg flex-grow"><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Desain Interior Mini-Resto</li><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Peralatan Dapur Profesional</li><li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Bahan Baku Awal 500 Porsi</li></ul><a href="https://wa.me/6281382256196?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Komandan%20Kosmik." target="_blank" class="mt-8 w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition">Pilih Misi Ini</a></div>
+                <!-- Paket 1 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col reveal">
+                    <h3 class="text-2xl font-bold text-orange-400">Paket Stasiun Luar Angkasa</h3><p class="text-4xl font-black my-4">Rp 15 Juta</p><p class="text-gray-400 mb-6">Paket hemat untuk memulai perjalanan bisnis kuliner Anda. Cocok untuk konsep booth minimalis.</p>
+                    <ul class="space-y-3 text-lg flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Booth Portabel Eksklusif</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Peralatan Masak Dasar</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Bahan Baku Awal 100 Porsi</li>
+                    </ul>
+                    <!-- Tombol ini membuka pop-up -->
+                    <button type="button" class="open-modal-trigger mt-8 w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition">Pilih Misi Ini</button>
+                </div>
+                <!-- Paket 2 (Populer) -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col border-2 border-orange-500 transform scale-105 shadow-2xl shadow-orange-500/20 reveal">
+                    <span class="bg-orange-500 text-white text-sm font-bold px-3 py-1 rounded-full absolute -top-4 right-4">PALING POPULER</span>
+                    <h3 class="text-2xl font-bold text-orange-400">Paket Penjelajah Galaksi</h3><p class="text-4xl font-black my-4">Rp 25 Juta</p><p class="text-gray-400 mb-6">Paket terlengkap untuk jangkauan pasar yang lebih luas. Ideal untuk lokasi strategis di ruko atau teras.</p>
+                    <ul class="space-y-3 text-lg flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Gerobak Premium Modern</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Peralatan Masak Lengkap</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Bahan Baku Awal 250 Porsi</li>
+                    </ul>
+                    <!-- Tombol ini membuka pop-up -->
+                    <button type="button" class="open-modal-trigger mt-8 w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition">Pilih Misi Ini</button>
+                </div>
+                <!-- Paket 3 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col reveal">
+                    <h3 class="text-2xl font-bold text-orange-400">Paket Komandan Kosmik</h3><p class="text-4xl font-black my-4">Rp 50 Juta</p><p class="text-gray-400 mb-6">Paket supremasi untuk dominasi pasar. Konsep mini-resto dengan fasilitas dan dukungan super lengkap.</p>
+                    <ul class="space-y-3 text-lg flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Desain Interior Mini-Resto</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Peralatan Dapur Profesional</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3"></i> Bahan Baku Awal 500 Porsi</li>
+                    </ul>
+                    <!-- Tombol ini membuka pop-up -->
+                    <button type="button" class="open-modal-trigger mt-8 w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition">Pilih Misi Ini</button>
+                </div>
             </div>
         </div>
     </section>
 
-    i Section -->
-    <section id="galeri" class="bg-slate-800 py-20">
+    <!-- Galeri Section -->
+    <section id="galeri" class="py-20">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-white reveal">Galeri <span class="text-orange-400">Misi Kami</span></h2>
@@ -129,47 +173,46 @@
                 <div class="swiper-wrapper">
                     <!-- Slide 1 -->
                     <div class="swiper-slide">
-                        <a href="https://images.unsplash.com/photo-1626082896498-4dc128ebc50d?q=80&w=2070&auto=format&fit=crop" data-fancybox="gallery" data-caption="Contoh booth modern">
-                            <img src="both 50jt.jpg" alt="Contoh booth Galaxy Chicken Criuk" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                        <a href="asset/15jt b.jpg" data-fancybox="gallery" data-caption="Contoh booth modern Paket Komandan Kosmik">
+                            <img src="asset/15jt b.jpg" alt="[Gambar booth Galaxy Chicken Criuk]" class="rounded-lg shadow-lg w-full h-80 object-cover">
                         </a>
                     </div>
                     <!-- Slide 2 -->
                     <div class="swiper-slide">
-                         <a href="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2069&auto=format&fit=crop" data-fancybox="gallery" data-caption="Outlet di malam hari">
-                            <img src="both 25juta.jpg" alt="Contoh outlet Galaxy Chicken Criuk di malam hari" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                         <a href="asset/25jt va.jpg" data-fancybox="gallery" data-caption="Outlet Penjelajah Galaksi di malam hari">
+                            <img src="asset/25jt va.jpg" alt="[Gambar outlet Galaxy Chicken Criuk di malam hari]" class="rounded-lg shadow-lg w-full h-80 object-cover">
                         </a>
                     </div>
                     <!-- Slide 3 -->
                     <div class="swiper-slide">
-                        <a href="https://images.unsplash.com/photo-1606787366850-de6330128211?q=80&w=2070&auto=format&fit=crop" data-fancybox="gallery" data-caption="Pelanggan menikmati hidangan">
-                            <img src="25jt va.jpg" alt="Pelanggan menikmati hidangan" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                        <a href="asset/both 25juta.jpg" data-fancybox="gallery" data-caption="Pelanggan menikmati hidangan lezat">
+                            <img src="asset/both 25juta.jpg" alt="[Gambar pelanggan menikmati hidangan]" class="rounded-lg shadow-lg w-full h-80 object-cover">
                         </a>
                     </div>
                     <!-- Slide 4 -->
                     <div class="swiper-slide">
-                        <a href="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop" data-fancybox="gallery" data-caption="Kru yang ramah dan siap melayani">
-                            <img src="15jt b.jpg" alt="Kru yang sedang melayani" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                        <a href="asset/both 50jt.jpg" data-fancybox="gallery" data-caption="Kru Stasiun Luar Angkasa yang ramah dan siap melayani">
+                            <img src="asset/both 50jt.jpg" alt="[Gambar kru yang sedang melayani]" class="rounded-lg shadow-lg w-full h-80 object-cover">
                         </a>
                     </div>
                     <!-- Slide 5 -->
                     <div class="swiper-slide">
-                        <a href="https://images.unsplash.com/photo-1569058242252-623df4609e39?q=80&w=2070&auto=format&fit=crop" data-fancybox="gallery" data-caption="Produk ayam goreng yang menggugah selera">
-                            <img src="ayam a.jpg" alt="Detail produk ayam goreng" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                        <a href="asset/ayam a.jpg" data-fancybox="gallery" data-caption="Produk ayam goreng yang menggugah selera">
+                            <img src="asset/ayam a.jpg" alt="[Gambar detail produk ayam goreng]" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                        </a>
+                        </div>
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <a href="asset/ayam2.jpg" data-fancybox="gallery" data-caption="Produk ayam goreng yang menggugah selera">
+                            <img src="asset/ayam2.jpg" alt="[Gambar detail produk ayam goreng]" class="rounded-lg shadow-lg w-full h-80 object-cover">
                         </a>
                      </div>
-                    <!-- Slide 5 -->
+                    <!-- Slide 7 -->
                     <div class="swiper-slide">
-                        <a href="https://images.unsplash.com/photo-1569058242252-623df4609e39?q=80&w=2070&auto=format&fit=crop" data-fancybox="gallery" data-caption="Produk ayam goreng yang menggugah selera">
-                            <img src="ayam3.jpg" alt="Detail produk ayam goreng" class="rounded-lg shadow-lg w-full h-80 object-cover">
+                        <a href="asset/ayam3.jpg" data-fancybox="gallery" data-caption="Produk ayam goreng yang menggugah selera">
+                            <img src="asset/ayam3.jpg" alt="[Gambar detail produk ayam goreng]" class="rounded-lg shadow-lg w-full h-80 object-cover">
                         </a>
-                     </div>
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide">
-                        <a href="https://images.unsplash.com/photo-1569058242252-623df4609e39?q=80&w=2070&auto=format&fit=crop" data-fancybox="gallery" data-caption="Produk ayam goreng yang menggugah selera">
-                            <img src="ayam2.jpg" alt="Detail produk ayam goreng" class="rounded-lg shadow-lg w-full h-80 object-cover">
-                        </a>      
                     </div>
-
                 </div>
                 <!-- Pagination Bullets -->
                 <div class="swiper-pagination mt-8 relative"></div>
@@ -181,15 +224,15 @@
     </section>
 
     <!-- Peta Section -->
-    <section id="peta" class="bg-slate-800 py-20">
+    <section id="peta" class="py-20 bg-slate-800">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16"><h2 class="text-4xl font-bold text-white reveal">Peta Galaksi <span class="text-orange-400">Outlet Kami</span></h2><p class="text-gray-400 mt-2 reveal">Temukan outlet Galaxy Chicken Criuk terdekat di konstelasi Anda.</p></div>
             <div id="map" class="reveal shadow-2xl shadow-orange-500/10"></div>
         </div>
     </section>
 
-    ni Mitra Section -->
-    <section id="testimoni" class="bg-slate-800 py-20">
+    <!-- Testimoni Mitra Section -->
+    <section id="testimoni" class="py-20">
         <div class="container mx-auto px-6 overflow-hidden">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-white reveal">Kisah Sukses <span class="text-orange-400">Para Komandan</span></h2>
@@ -201,7 +244,7 @@
                     <!-- Testimoni Slide 1 -->
                     <div class="swiper-slide">
                         <div class="bg-slate-900/50 rounded-2xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center">
-                            <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=1974&auto=format&fit=crop" alt="Owner bersama mitra Galaxy Chicken Criuk Budi Santoso" class="rounded-lg shadow-md w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=1974&auto=format&fit=crop" alt="[Gambar mitra Budi Santoso]" class="rounded-lg shadow-md w-full h-full object-cover">
                             <div class="text-left">
                                 <i class="fas fa-quote-left text-4xl text-orange-400 mb-4"></i>
                                 <p class="text-xl italic text-gray-200">"Bergabung dengan Galaxy Chicken Criuk adalah keputusan terbaik saya. Dukungan dari tim pusat luar biasa, dari awal sampai sekarang omset terus meroket. Konsepnya unik dan sangat disukai pelanggan!"</p>
@@ -210,22 +253,21 @@
                             </div>
                         </div>
                     </div>
-                     <!-- Testimoni Slide 1 -->
+                     <!-- Testimoni Slide 2 -->
                     <div class="swiper-slide">
                         <div class="bg-slate-900/50 rounded-2xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center">
-                            <img src="347b278c-6db8-45b5-98b1-740405d9c43c.jpg" alt="Owner bersama mitra Galaxy Chicken Criuk Budi Santoso" class="rounded-lg shadow-md w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="[Gambar mitra Siti Aminah]" class="rounded-lg shadow-md w-full h-full object-cover">
                             <div class="text-left">
                                 <i class="fas fa-quote-left text-4xl text-orange-400 mb-4"></i>
-                                <p class="text-xl italic text-gray-200">"Bergabung dengan Galaxy Chicken Criuk adalah keputusan terbaik saya. Dukungan dari tim pusat luar biasa, dari awal sampai sekarang omset terus meroket. Konsepnya unik dan sangat disukai pelanggan!"</p>
-                                <p class="text-lg font-bold text-white mt-6">- Anisa Dwi Aprilianti</p>
-                                <p class="text-orange-400">Mitra Komandan Kosmik, Bogor</p>
+                                <p class="text-xl italic text-gray-200">"Awalnya ragu, tapi tim Galaxy Chicken sangat membantu. Pelatihannya detail dan bahan bakunya berkualitas. Balik modalnya cepat, sekarang saya sudah berencana buka cabang kedua."</p>
+                                <p class="text-lg font-bold text-white mt-6">- Siti Aminah</p>
+                                <p class="text-orange-400">Mitra Penjelajah Galaksi, Surabaya</p>
                             </div>
                         </div>
-                    </div>
-                    <!-- Testimoni Slide 2 -->
+                        <!-- Testimoni Slide 2 -->
                     <div class="swiper-slide">
                         <div class="bg-slate-900/50 rounded-2xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" alt="Owner bersama mitra Galaxy Chicken Criuk Siti Aminah" class="rounded-lg shadow-md w-full h-full object-cover">
+                            <img src="asset/anisadwiaprilianti.jpg" alt="[Gambar mitra Siti Aminah]" class="rounded-lg shadow-md w-full h-full object-cover">
                             <div class="text-left">
                                 <i class="fas fa-quote-left text-4xl text-orange-400 mb-4"></i>
                                 <p class="text-xl italic text-gray-200">"Awalnya ragu, tapi tim Galaxy Chicken sangat membantu. Pelatihannya detail dan bahan bakunya berkualitas. Balik modalnya cepat, sekarang saya sudah berencana buka cabang kedua."</p>
@@ -237,7 +279,7 @@
                     <!-- Testimoni Slide 3 -->
                     <div class="swiper-slide">
                         <div class="bg-slate-900/50 rounded-2xl p-8 md:p-12 grid md:grid-cols-2 gap-12 items-center">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" alt="Owner bersama mitra Galaxy Chicken Criuk Eko Prasetyo" class="rounded-lg shadow-md w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" alt="[Gambar mitra Eko Prasetyo]" class="rounded-lg shadow-md w-full h-full object-cover">
                             <div class="text-left">
                                 <i class="fas fa-quote-left text-4xl text-orange-400 mb-4"></i>
                                 <p class="text-xl italic text-gray-200">"Sebagai pemula di bisnis kuliner, saya pilih paket booth. Ternyata respon pasarnya luar biasa! Sistemnya mudah dijalankan, dan saya sangat puas dengan hasilnya."</p>
@@ -250,6 +292,8 @@
                 <!-- Pagination Bullets -->
                 <div class="swiper-pagination-testimonial"></div>
             </div>
+        </div>
+    </section>
 
     <!-- Call to Action - Proposal -->
     <section class="bg-slate-800 py-20">
@@ -268,85 +312,171 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/6281382256196?text=Halo,%20saya%20tertarik%20dengan%20franchise%20Galaxy%20Chicken%20Criuk." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp my-float" style="margin-top: 16px;"></i></a>
+    <!-- Tombol WhatsApp Mengambang (Direct ke nomor utama) -->
+    <a href="https://wa.me/6289663363038?text=Halo,%20saya%20tertarik%20dengan%20franchise%20Galaxy%20Chicken%20Criuk." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp my-float" style="margin-top: 16px;"></i></a>
     
+    <!-- === KODE POP-UP MARKETING DIMULAI DI SINI === -->
+    <div id="marketing-modal-backdrop" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-[1002]">
+        <div id="marketing-modal-content" class="bg-gray-800 border border-orange-500/50 rounded-2xl p-6 shadow-2xl max-w-sm w-full relative">
+            
+            <!-- Tombol Close -->
+            <button id="close-marketing-modal" class="absolute -top-3 -right-3 bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg">&times;</button>
+
+            <!-- Judul Pop-up -->
+            <h3 class="text-2xl font-bold text-center text-orange-400 font-sans">Hubungi Tim Marketing Kami</h3>
+            <p class="text-center text-gray-400 text-sm mt-1 mb-6">Silahkan pilih salah satu marketing kami untuk berkonsultasi.</p>
+
+            <!-- Daftar Marketing -->
+            <div class="space-y-3">
+                
+                <!-- Marketing 1: Theo -->
+                <a href="https://wa.me/6281382256196?text=Halo%20Theo,%20saya%20tertarik%20dengan%20kemitraan%20Galaxy%20Chicken." target="_blank" class="flex items-center p-3 rounded-xl hover:bg-gray-700 transition-colors duration-200">
+                    <img src="https://placehold.co/100x100/1f2937/FFFFFF?text=T" alt="Foto Theo" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-gray-600">
+                    <div>
+                        <p class="font-bold text-lg text-white">Theo</p>
+                        <p class="text-sm text-gray-400">Marketing Specialist</p>
+                    </div>
+                </a>
+
+                <!-- Marketing 2: Nurita -->
+                <a href="https://wa.me/6285773969656?text=Halo%20Nurita,%20saya%20tertarik%20dengan%20kemitraan%20Galaxy%20Chicken." target="_blank" class="flex items-center p-3 rounded-xl hover:bg-gray-700 transition-colors duration-200">
+                    <img src="https://placehold.co/100x100/1f2937/FFFFFF?text=N" alt="Foto Nurita" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-gray-600">
+                    <div>
+                        <p class="font-bold text-lg text-white">Nurita</p>
+                        <p class="text-sm text-gray-400">Partnership Manager</p>
+                    </div>
+                </a>
+
+                <!-- Marketing 3: Hamda -->
+                <a href="https://wa.me/6289876543210?text=Halo%20Hamda,%20saya%20tertarik%20dengan%20kemitraan%20Galaxy%20Chicken." target="_blank" class="flex items-center p-3 rounded-xl hover:bg-gray-700 transition-colors duration-200">
+                    <img src="https://placehold.co/100x100/1f2937/FFFFFF?text=H" alt="Foto Hamda" class="w-14 h-14 rounded-full object-cover mr-4 border-2 border-gray-600">
+                    <div>
+                        <p class="font-bold text-lg text-white">Hamda</p>
+                        <p class="text-sm text-gray-400">Marketing Specialist</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- === KODE POP-UP MARKETING SELESAI === -->
+
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        // Menjalankan semua skrip setelah halaman dimuat sepenuhnya
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Skrip untuk efek Reveal on Scroll ---
+            function reveal() {
+                const reveals = document.querySelectorAll(".reveal");
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 100;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    }
                 }
             }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+            window.addEventListener("scroll", reveal);
+            reveal();
 
-        const gallerySwiper = new Swiper('.gallery-slider', {
-            loop: true, autoplay: { delay: 3000, disableOnInteraction: false }, effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto',
-            coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
-            pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        });
+            // --- Skrip untuk Swiper.js Slider Galeri ---
+            new Swiper('.gallery-slider', {
+                loop: true, autoplay: { delay: 3000, disableOnInteraction: false }, effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto',
+                coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+                pagination: { el: '.swiper-pagination', clickable: true }, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            });
+            
+            // --- Skrip untuk Swiper.js Slider Testimoni ---
+            new Swiper('.testimonialSwiper', {
+                loop: true, autoplay: { delay: 5000, disableOnInteraction: true }, effect: 'fade',
+                fadeEffect: { crossFade: true }, pagination: { el: '.swiper-pagination-testimonial', clickable: true },
+            });
 
-        const testimonialSwiper = new Swiper('.testimonialSwiper', {
-            loop: true, autoplay: { delay: 5000, disableOnInteraction: true }, effect: 'fade',
-            fadeEffect: { crossFade: true }, pagination: { el: '.swiper-pagination-testimonial', clickable: true },
-        });
-
-        Fancybox.bind("[data-fancybox='gallery']", { loop: true, buttons: ["zoom", "slideShow", "thumbs", "close"] });
-        
-        // --- LOGIKA PEMUTAR VIDEO ---
-        const videoSource = 'https://youtu.be/LbEqq2UGCk8?si=s5yk7RZ8rS5VFtBl'; // <-- Ganti link video di sini
-        const videoWrapper = document.getElementById('video-wrapper');
-        const youtubePlayer = document.getElementById('youtube-player');
-        const localPlayer = document.getElementById('local-player');
-
-        if (videoSource) {
-            videoWrapper.classList.remove('hidden'); // Tampilkan wrapper video
-            let videoId = '';
-            if (videoSource.includes('youtu.be/')) {
-                videoId = videoSource.split('youtu.be/')[1].split('?')[0];
-            } else if (videoSource.includes('watch?v=')) {
-                videoId = videoSource.split('watch?v=')[1].split('&')[0];
+            // --- Skrip untuk Fancybox Lightbox ---
+            Fancybox.bind("[data-fancybox='gallery']", { loop: true, buttons: ["zoom", "slideShow", "thumbs", "close"] });
+            
+            // --- Logika Pemutar Video ---
+            const videoSource = 'https://youtu.be/LbEqq2UGCk8?si=s5yk7RZ8rS5VFtBl';
+            const videoWrapper = document.getElementById('video-wrapper');
+            const youtubePlayer = document.getElementById('youtube-player');
+            const localPlayer = document.getElementById('local-player');
+            if (videoSource && videoWrapper && youtubePlayer && localPlayer) {
+                videoWrapper.classList.remove('hidden');
+                let videoId = '';
+                if (videoSource.includes('youtu.be/')) {
+                    videoId = videoSource.split('youtu.be/')[1].split('?')[0];
+                } else if (videoSource.includes('watch?v=')) {
+                    videoId = videoSource.split('watch?v=')[1].split('&')[0];
+                }
+                if (videoId) {
+                    youtubePlayer.src = 'https://www.youtube.com/embed/' + videoId;
+                    youtubePlayer.classList.remove('hidden');
+                } else if (videoSource.endsWith('.mp4')) {
+                    localPlayer.src = videoSource;
+                    localPlayer.classList.remove('hidden');
+                }
             }
-            if (videoId) {
-                youtubePlayer.src = 'https://www.youtube.com/embed/' + videoId;
-                youtubePlayer.classList.remove('hidden');
-            } else if (videoSource.endsWith('.mp4')) {
-                localPlayer.src = videoSource;
-                localPlayer.classList.remove('hidden');
-            }
-        }
 
-       // PETA INTERAKTIF LEAFLET.JS
-        const map = L.map('map').setView([-2.548926, 118.0148634], 5);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        const outletIcon = L.icon({
-            iconUrl: 'adobe.png', // Ganti dengan logo Anda
-            iconSize: [40, 40],
-            iconAnchor: [20, 40],
-            popupAnchor: [0, -40]
-        });
-        const outlets = [
-            { lat: -6.208763, lon: 106.845599, name: "Galaxy Chicken Jakarta", address: "Jl. Jenderal Sudirman Kav. 52-53, Jakarta Selatan" },
-            { lat: -7.257472, lon: 112.752088, name: "Galaxy Chicken Surabaya", address: "Jl. Tunjungan No. 88, Surabaya" },
-            { lat: -6.447544096370465, lon: 106.91155498847365, name: "Galaxy Chicken Bogor", address: "Jl. , Tlajung Udik, Kec. Gn. Putri, Kabupaten Bogor" },
-            { lat: -6.917464, lon: 107.619123, name: "Galaxy Chicken Bandung", address: "Jl. Asia Afrika No. 1, Bandung" },
-            { lat: -7.795580, lon: 110.369490, name: "Galaxy Chicken Yogyakarta", address: "Jl. Malioboro, Yogyakarta" },
-            { lat: 5.553959, lon: 95.317598, name: "Galaxy Chicken Aceh", address: "Jl. T. Nyak Arief, Banda Aceh" },
-        ];
-        outlets.forEach(outlet => {
-            L.marker([outlet.lat, outlet.lon], {icon: outletIcon}).addTo(map).bindPopup(`<b>${outlet.name}</b><br>${outlet.address}`);
+            // --- Peta Interaktif Leaflet.js ---
+            const mapElement = document.getElementById('map');
+            if (mapElement) {
+                const map = L.map('map').setView([-2.548926, 118.0148634], 5);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+                const outletIcon = L.icon({
+                    iconUrl: 'asset/adobe.png',
+                    iconSize: [40, 40], iconAnchor: [20, 40], popupAnchor: [0, -40]
+                });
+                const outlets = [
+                    { lat: -6.208763, lon: 106.845599, name: "Galaxy Chicken Jakarta", address: "Jl. Jenderal Sudirman Kav. 52-53, Jakarta Selatan" },
+                    { lat: -7.257472, lon: 112.752088, name: "Galaxy Chicken Surabaya", address: "Jl. Tunjungan No. 88, Surabaya" },
+                    { lat: -6.447544, lon: 106.911554, name: "Galaxy Chicken Bogor", address: "Jl. Tlajung Udik, Kec. Gn. Putri, Kabupaten Bogor" },
+                    { lat: -6.917464, lon: 107.619123, name: "Galaxy Chicken Bandung", address: "Jl. Asia Afrika No. 1, Bandung" },
+                    { lat: -7.795580, lon: 110.369490, name: "Galaxy Chicken Yogyakarta", address: "Jl. Malioboro, Yogyakarta" },
+                    { lat: 5.553959, lon: 95.317598, name: "Galaxy Chicken Aceh", address: "Jl. T. Nyak Arief, Banda Aceh" },
+                ];
+                outlets.forEach(outlet => {
+                    L.marker([outlet.lat, outlet.lon], {icon: outletIcon}).addTo(map).bindPopup(`<b>${outlet.name}</b><br>${outlet.address}`);
+                });
+            }
+
+            // --- Skrip untuk Pop-up Marketing ---
+            const openModalTriggers = document.querySelectorAll('.open-modal-trigger');
+            const closeModalBtn = document.getElementById('close-marketing-modal');
+            const modalBackdrop = document.getElementById('marketing-modal-backdrop');
+
+            if (openModalTriggers.length > 0 && closeModalBtn && modalBackdrop) {
+                // Fungsi untuk membuka pop-up
+                const openModal = () => {
+                    modalBackdrop.classList.remove('hidden');
+                };
+
+                // Menambahkan event listener ke semua tombol pemicu
+                openModalTriggers.forEach(btn => {
+                    btn.addEventListener('click', openModal);
+                });
+
+                // Fungsi untuk menutup pop-up
+                const closeModal = () => {
+                    modalBackdrop.classList.add('hidden');
+                };
+
+                // Menambahkan event listener ke tombol close
+                closeModalBtn.addEventListener('click', closeModal);
+
+                // Menutup pop-up jika user mengklik area gelap di sekitarnya
+                modalBackdrop.addEventListener('click', (event) => {
+                    if (event.target === modalBackdrop) {
+                        closeModal();
+                    }
+                });
+            }
         });
     </script>
 </body>
